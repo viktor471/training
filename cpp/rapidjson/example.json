@@ -1,0 +1,5 @@
+{
+	"var_a" : {"type": "string" },
+	"var_b" : {"type": "number" }
+}
+	

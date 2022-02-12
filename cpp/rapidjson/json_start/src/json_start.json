@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Description": "json_start",
+        "Id": "json_start",
+        "Name": "json_start",
+        "ServiceTypes": [
+            "KDevelop/Plugin"
+        ]
+    },
+    "X-KDevelop-Category": "Global",
+    "X-KDevelop-Mode": "GUI"
+}
