@@ -1,0 +1,1 @@
+void inner(int *n);

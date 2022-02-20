@@ -1,13 +1,11 @@
+#include <QCoreApplication>
 #include <iostream>
-#include <thread>
-
-void func() {
-    std::cout << "hello" << std::endl;
-}
 
 int main(int argc, char *argv[])
 {
-    std::thread th(func);
-    th.join();
-    return 0;
+  quint64 i = 0;
+  QCoreApplication a(argc, argv);
+  for( ; ; )
+    std::cout << i++ << std::endl;
+  return a.exec();
 }

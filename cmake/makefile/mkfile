@@ -1,0 +1,8 @@
+CC=g++
+CFLAGS=-I
+DEPS = function.h
+
+%.o %.cpp $(DEPS)
+	$(CC) -c -o $@ $< $(FLAGS)
+
+

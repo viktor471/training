@@ -1,7 +1,0 @@
-#include "common.hpp"
-#include <iostream>
-
-void Common::method()
-{
-	std::cout << "hello from common" << std::endl;
-}

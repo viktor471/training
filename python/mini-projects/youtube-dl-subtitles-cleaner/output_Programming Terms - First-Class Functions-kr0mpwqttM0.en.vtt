@@ -1,0 +1,1144 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:02.070 --> 00:00:04.010
+hey everybody how's it going in this
+
+00:00:04.020 --> 00:00:06.170
+programming terms video we'll be going
+
+00:00:06.180 --> 00:00:07.190
+over the term first class functions now
+
+00:00:07.200 --> 00:00:09.110
+we're going to look at first class
+
+00:00:09.120 --> 00:00:11.600
+functions in both JavaScript and in
+
+00:00:11.610 --> 00:00:13.220
+Python so you can see the concept in two
+
+00:00:13.230 --> 00:00:15.350
+different languages and that may help
+
+00:00:15.360 --> 00:00:17.150
+the term sink in a little bit but don't
+
+00:00:17.160 --> 00:00:19.250
+worry if you don't know either of these
+
+00:00:19.260 --> 00:00:21.080
+languages what's important to take away
+
+00:00:21.090 --> 00:00:23.060
+from the video is the concept of first
+
+00:00:23.070 --> 00:00:25.250
+class functions and not the specific
+
+00:00:25.260 --> 00:00:27.019
+syntax of any one language so
+
+00:00:27.029 --> 00:00:29.779
+understanding first class functions will
+
+00:00:29.789 --> 00:00:32.120
+help you understand other terms such as
+
+00:00:32.130 --> 00:00:34.549
+higher water functions currying and
+
+00:00:34.559 --> 00:00:36.979
+closures so it's a very useful term to
+
+00:00:36.989 --> 00:00:38.720
+note ok so what is a first class
+
+00:00:38.730 --> 00:00:41.420
+function if you look up the definition
+
+00:00:41.430 --> 00:00:43.910
+on Wikipedia one of the first lines
+
+00:00:43.920 --> 00:00:45.560
+you'll see is that it says a programming
+
+00:00:45.570 --> 00:00:47.690
+language is said to have first-class
+
+00:00:47.700 --> 00:00:50.000
+functions if it treats functions as
+
+00:00:50.010 --> 00:00:51.590
+first-class citizens and then if you
+
+00:00:51.600 --> 00:00:53.900
+look up first-class citizens for
+
+00:00:53.910 --> 00:00:56.180
+programming it says that a first-class
+
+00:00:56.190 --> 00:00:58.069
+citizen some kind sometimes called a
+
+00:00:58.079 --> 00:01:00.860
+first-class object in a programming
+
+00:01:00.870 --> 00:01:03.170
+language is an entity which supports all
+
+00:01:03.180 --> 00:01:05.030
+the operations generally available to
+
+00:01:05.040 --> 00:01:06.800
+other entities these operations
+
+00:01:06.810 --> 00:01:08.960
+typically include being passed as an
+
+00:01:08.970 --> 00:01:11.270
+argument returned from a function and
+
+00:01:11.280 --> 00:01:13.310
+assigned to a variable ok so what
+
+00:01:13.320 --> 00:01:14.660
+exactly does that mean so that means
+
+00:01:14.670 --> 00:01:16.999
+that we should be able to treat
+
+00:01:17.009 --> 00:01:19.370
+functions just like any other object or
+
+00:01:19.380 --> 00:01:21.140
+variable so I think this will be more
+
+00:01:21.150 --> 00:01:23.719
+clear once we take a look at these
+
+00:01:23.729 --> 00:01:25.880
+coding examples so here on the Left I
+
+00:01:25.890 --> 00:01:27.980
+have Python and here on the right I have
+
+00:01:27.990 --> 00:01:30.289
+JavaScript so you can see this concept
+
+00:01:30.299 --> 00:01:32.899
+working in two different languages ok so
+
+00:01:32.909 --> 00:01:35.899
+first of all let's see what it means to
+
+00:01:35.909 --> 00:01:37.940
+assign a function to a variable now this
+
+00:01:37.950 --> 00:01:39.560
+doesn't mean that we are assigning the
+
+00:01:39.570 --> 00:01:41.420
+result of the function to a variable
+
+00:01:41.430 --> 00:01:44.060
+this is where some people get confused
+
+00:01:44.070 --> 00:01:46.010
+so and the example I have pulled up here
+
+00:01:46.020 --> 00:01:47.990
+this is what we're used to doing with
+
+00:01:48.000 --> 00:01:50.359
+functions so we have a function called
+
+00:01:50.369 --> 00:01:53.450
+Square and we're setting this variable F
+
+00:01:53.460 --> 00:01:55.999
+equal to the square of 5 now down here
+
+00:01:56.009 --> 00:01:58.609
+on this line I'm printing out the
+
+00:01:58.619 --> 00:02:00.679
+function Square and I'm printing out
+
+00:02:00.689 --> 00:02:02.090
+this variable F so I'm going to go ahead
+
+00:02:02.100 --> 00:02:04.730
+and run that and then I'm going to do
+
+00:02:04.740 --> 00:02:06.560
+the same thing in JavaScript and I'll go
+
+00:02:06.570 --> 00:02:08.719
+ahead and run that so you can see
+
+00:02:08.729 --> 00:02:11.420
+whenever I print out the function square
+
+00:02:11.430 --> 00:02:13.620
+you can see that it prints out that it
+
+00:02:13.630 --> 00:02:16.380
+is a function called square now
+
+00:02:16.390 --> 00:02:18.330
+print out F it's printing out 25 and
+
+00:02:18.340 --> 00:02:20.370
+that's because we passed into five to
+
+00:02:20.380 --> 00:02:22.140
+the square function and that's the same
+
+00:02:22.150 --> 00:02:24.210
+thing here in JavaScript it's printing
+
+00:02:24.220 --> 00:02:26.700
+out the function square that we logged
+
+00:02:26.710 --> 00:02:28.830
+out and we're also logging F which is
+
+00:02:28.840 --> 00:02:30.870
+the square of five now what a lot of
+
+00:02:30.880 --> 00:02:33.780
+people don't realize is that we can
+
+00:02:33.790 --> 00:02:36.630
+remove these parentheses here and set
+
+00:02:36.640 --> 00:02:38.880
+our variable F to the square function so
+
+00:02:38.890 --> 00:02:41.010
+if I take out these parentheses and save
+
+00:02:41.020 --> 00:02:43.770
+that and let me do the same thing here
+
+00:02:43.780 --> 00:02:45.960
+in JavaScript and now we did take out
+
+00:02:45.970 --> 00:02:47.310
+those parentheses a lot of people get
+
+00:02:47.320 --> 00:02:49.080
+tripped up at this point and they only
+
+00:02:49.090 --> 00:02:51.030
+take out the arguments and they leave in
+
+00:02:51.040 --> 00:02:52.440
+the parenthesis but you don't want to do
+
+00:02:52.450 --> 00:02:53.940
+that because the parentheses mean that
+
+00:02:53.950 --> 00:02:55.620
+we're going to execute the function we
+
+00:02:55.630 --> 00:02:58.050
+don't want to execute the function we
+
+00:02:58.060 --> 00:03:00.930
+just want to set our variable F equal to
+
+00:03:00.940 --> 00:03:03.810
+the function not executed so now that I
+
+00:03:03.820 --> 00:03:07.170
+have my variable F equal to square what
+
+00:03:07.180 --> 00:03:09.900
+if I run this now so let me run this
+
+00:03:09.910 --> 00:03:12.720
+code so now you can see that when it
+
+00:03:12.730 --> 00:03:14.820
+prints out F F is equal to our square
+
+00:03:14.830 --> 00:03:16.350
+function so this is one of the aspects
+
+00:03:16.360 --> 00:03:18.630
+of what it means to be a first-class
+
+00:03:18.640 --> 00:03:21.720
+function so now we can treat the
+
+00:03:21.730 --> 00:03:24.180
+variable f as a function so now I can
+
+00:03:24.190 --> 00:03:26.580
+use f just like I would use square so
+
+00:03:26.590 --> 00:03:28.980
+instead of printing out F what if I
+
+00:03:28.990 --> 00:03:31.560
+print out f of five and I run it just
+
+00:03:31.570 --> 00:03:33.990
+like a function so you can see now I get
+
+00:03:34.000 --> 00:03:38.220
+25 there if I do the same thing in
+
+00:03:38.230 --> 00:03:41.220
+JavaScript then I will get 25 there as
+
+00:03:41.230 --> 00:03:42.990
+well so so far we assigned a function to
+
+00:03:43.000 --> 00:03:45.570
+a variable but we can also pass
+
+00:03:45.580 --> 00:03:47.640
+functions as arguments and return
+
+00:03:47.650 --> 00:03:50.310
+functions as the result of other
+
+00:03:50.320 --> 00:03:52.830
+functions so let's take a look at both
+
+00:03:52.840 --> 00:03:55.230
+of those examples and by the way if a
+
+00:03:55.240 --> 00:03:58.199
+function accepts other functions as
+
+00:03:58.209 --> 00:04:00.000
+arguments or returns functions as their
+
+00:04:00.010 --> 00:04:02.160
+result that's what you call a
+
+00:04:02.170 --> 00:04:04.410
+higher-order function so first let's
+
+00:04:04.420 --> 00:04:07.110
+look at an example of passing a function
+
+00:04:07.120 --> 00:04:08.970
+as an argument to another function so a
+
+00:04:08.980 --> 00:04:11.310
+great example of this is the map
+
+00:04:11.320 --> 00:04:13.740
+function in both Python and in
+
+00:04:13.750 --> 00:04:16.740
+JavaScript so the map function takes a
+
+00:04:16.750 --> 00:04:19.050
+function and an array as its arguments
+
+00:04:19.060 --> 00:04:21.539
+and it runs each value of that array
+
+00:04:21.549 --> 00:04:24.719
+through the provided function and then
+
+00:04:24.729 --> 00:04:26.190
+returns a new array of those results so
+
+00:04:26.200 --> 00:04:27.470
+I think that will be more clear if we
+
+00:04:27.480 --> 00:04:31.550
+take a look at an
+
+00:04:31.560 --> 00:04:33.590
+example here so I have a sample map
+
+00:04:33.600 --> 00:04:35.660
+function here this isn't the built-in
+
+00:04:35.670 --> 00:04:37.850
+map function but what we're going to do
+
+00:04:37.860 --> 00:04:39.680
+is just build our own from scratch so
+
+00:04:39.690 --> 00:04:43.040
+that way we can see exactly what's going
+
+00:04:43.050 --> 00:04:46.400
+on okay so let me take out all these old
+
+00:04:46.410 --> 00:04:48.980
+variables here and uncomment out this
+
+00:04:48.990 --> 00:04:51.550
+and I'll push these down for now and let
+
+00:04:51.560 --> 00:04:55.280
+me do the same thing over here in
+
+00:04:55.290 --> 00:04:58.100
+JavaScript so let me go ahead and move
+
+00:04:58.110 --> 00:05:01.940
+these up okay let me go ahead and
+
+00:05:01.950 --> 00:05:04.670
+uncomment out this code here okay so we
+
+00:05:04.680 --> 00:05:06.950
+have a custom built map function here
+
+00:05:06.960 --> 00:05:09.080
+which is going to behave kind of like
+
+00:05:09.090 --> 00:05:12.140
+the built-in map function and what we're
+
+00:05:12.150 --> 00:05:14.480
+doing is we are taking in a function as
+
+00:05:14.490 --> 00:05:16.610
+an argument and then we're taking in an
+
+00:05:16.620 --> 00:05:18.320
+array as an argument and then here we're
+
+00:05:18.330 --> 00:05:21.740
+going to create an empty result array
+
+00:05:21.750 --> 00:05:24.590
+loop through all of the items in the
+
+00:05:24.600 --> 00:05:26.720
+passed an array and run each of those
+
+00:05:26.730 --> 00:05:28.700
+items through the function that we
+
+00:05:28.710 --> 00:05:30.680
+passed in as an argument and append that
+
+00:05:30.690 --> 00:05:32.420
+to the result and then after we're done
+
+00:05:32.430 --> 00:05:34.310
+we're going to return the result so you
+
+00:05:34.320 --> 00:05:37.460
+can see here I have an example where I'm
+
+00:05:37.470 --> 00:05:40.400
+setting this squares variable equal to
+
+00:05:40.410 --> 00:05:42.800
+the my map function I'm passing in the
+
+00:05:42.810 --> 00:05:45.020
+square function that we created up here
+
+00:05:45.030 --> 00:05:48.890
+and then I'm also passing in a list of
+
+00:05:48.900 --> 00:05:51.680
+values from 1 to 5 and again both here
+
+00:05:51.690 --> 00:05:54.350
+and Python and in JavaScript notice that
+
+00:05:54.360 --> 00:05:56.690
+I'm not using the parentheses when I
+
+00:05:56.700 --> 00:05:58.580
+pass this square function in to this
+
+00:05:58.590 --> 00:06:00.650
+other function because adding the
+
+00:06:00.660 --> 00:06:02.270
+parentheses would try to execute the
+
+00:06:02.280 --> 00:06:02.810
+function and that's not where what we're
+
+00:06:02.820 --> 00:06:05.330
+doing here
+
+00:06:05.340 --> 00:06:08.600
+we aren't executing the function until
+
+00:06:08.610 --> 00:06:11.210
+this line here within our map function
+
+00:06:11.220 --> 00:06:13.610
+so let me go ahead and run this so that
+
+00:06:13.620 --> 00:06:16.610
+you can see the results whenever we pass
+
+00:06:16.620 --> 00:06:18.350
+in this list and the square function to
+
+00:06:18.360 --> 00:06:20.180
+our map function so you can see here we
+
+00:06:20.190 --> 00:06:22.670
+printed out the squares it took this
+
+00:06:22.680 --> 00:06:25.190
+list of 1 through 5 and squared all of
+
+00:06:25.200 --> 00:06:26.930
+those numbers and if I do that over here
+
+00:06:26.940 --> 00:06:29.570
+in JavaScript then it does the same
+
+00:06:29.580 --> 00:06:31.130
+thing and actually to get the same
+
+00:06:31.140 --> 00:06:34.430
+result here I'm going to have to start
+
+00:06:34.440 --> 00:06:36.410
+at 1 and go to the end of that so let me
+
+00:06:36.420 --> 00:06:38.120
+save that and rerun it okay so now you
+
+00:06:38.130 --> 00:06:41.239
+can see that we're getting the same
+
+00:06:41.249 --> 00:06:44.029
+results okay so this is useful because
+
+00:06:44.039 --> 00:06:46.429
+now we can pass any function into our
+
+00:06:46.439 --> 00:06:49.339
+custom map function that we created so
+
+00:06:49.349 --> 00:06:52.309
+for example I have a cube function down
+
+00:06:52.319 --> 00:06:54.409
+here now let me grab this cube function
+
+00:06:54.419 --> 00:06:56.769
+and just pass it in to our map function
+
+00:06:56.779 --> 00:06:59.199
+and I'll do the same thing over here in
+
+00:06:59.209 --> 00:07:02.689
+JavaScript so let me clear that out and
+
+00:07:02.699 --> 00:07:04.519
+rerun that and in my Python example I'm
+
+00:07:04.529 --> 00:07:06.769
+going to have to actually cut this out
+
+00:07:06.779 --> 00:07:08.899
+and move it above here by the square
+
+00:07:08.909 --> 00:07:10.579
+function so let me save that and rerun
+
+00:07:10.589 --> 00:07:12.859
+it so you can see all that we did
+
+00:07:12.869 --> 00:07:15.499
+differently was pass in this new
+
+00:07:15.509 --> 00:07:18.229
+function as an argument to our map
+
+00:07:18.239 --> 00:07:21.409
+function and then it used that function
+
+00:07:21.419 --> 00:07:23.959
+within here to execute on each of these
+
+00:07:23.969 --> 00:07:25.609
+values instead of the square function so
+
+00:07:25.619 --> 00:07:28.309
+it's it's useful to be able to pass
+
+00:07:28.319 --> 00:07:30.979
+around functions like this okay so
+
+00:07:30.989 --> 00:07:33.979
+lastly let's see what it looks like to
+
+00:07:33.989 --> 00:07:37.159
+return a function from another function
+
+00:07:37.169 --> 00:07:39.229
+so that is one of the aspects of what it
+
+00:07:39.239 --> 00:07:41.029
+means to be a first-class function now
+
+00:07:41.039 --> 00:07:42.739
+this seems to be what trips people up
+
+00:07:42.749 --> 00:07:44.329
+the most and I have to admit I get
+
+00:07:44.339 --> 00:07:46.309
+tripped up on this all the time too
+
+00:07:46.319 --> 00:07:48.289
+because it can get complicated to keep
+
+00:07:48.299 --> 00:07:50.509
+track of everything and sometimes it can
+
+00:07:50.519 --> 00:07:52.459
+be hard to visualize exactly what's
+
+00:07:52.469 --> 00:07:54.939
+going on all at once but let's take a
+
+00:07:54.949 --> 00:07:57.499
+look at some simple examples and see if
+
+00:07:57.509 --> 00:07:59.389
+we can see what this looks like so let
+
+00:07:59.399 --> 00:08:02.359
+me go ahead and just remove all the code
+
+00:08:02.369 --> 00:08:04.309
+that I had and uncomment out these other
+
+00:08:04.319 --> 00:08:07.159
+examples that I have down here okay so
+
+00:08:07.169 --> 00:08:09.619
+first let's take a look at this really
+
+00:08:09.629 --> 00:08:11.149
+simple logger function that I have so
+
+00:08:11.159 --> 00:08:14.329
+I'm going to uncomment out these and
+
+00:08:14.339 --> 00:08:16.969
+save these okay so this is one of the
+
+00:08:16.979 --> 00:08:19.009
+simpler examples that I could think of
+
+00:08:19.019 --> 00:08:21.829
+to start out with so we have this
+
+00:08:21.839 --> 00:08:23.959
+function here called logger and this
+
+00:08:23.969 --> 00:08:26.509
+logger function takes in an argument a
+
+00:08:26.519 --> 00:08:28.999
+message argument and then within this
+
+00:08:29.009 --> 00:08:31.429
+function we have another function called
+
+00:08:31.439 --> 00:08:33.980
+log message and this function doesn't
+
+00:08:33.990 --> 00:08:35.689
+take in any arguments and all it does
+
+00:08:35.699 --> 00:08:38.749
+when you execute this log message
+
+00:08:38.759 --> 00:08:41.119
+function is that it prints out this log
+
+00:08:41.129 --> 00:08:43.639
+statement with the message that we
+
+00:08:43.649 --> 00:08:45.889
+passed in to our logger function and now
+
+00:08:45.899 --> 00:08:49.009
+down here at the bottom we are returning
+
+00:08:49.019 --> 00:08:51.439
+this log message function that is within
+
+00:08:51.449 --> 00:08:53.179
+our logger function now I know that
+
+00:08:53.189 --> 00:08:55.010
+might sound confusing but let's go ahead
+
+00:08:55.020 --> 00:08:56.930
+and run an example and walk through
+
+00:08:56.940 --> 00:08:59.389
+see if we can see what's going on okay
+
+00:08:59.399 --> 00:09:02.960
+so let me go ahead and execute this in
+
+00:09:02.970 --> 00:09:04.880
+both Python and in JavaScript and let's
+
+00:09:04.890 --> 00:09:08.000
+walk through exactly what just happened
+
+00:09:08.010 --> 00:09:12.079
+so what we did is we set this log hi
+
+00:09:12.089 --> 00:09:15.440
+variable equal to our logger function
+
+00:09:15.450 --> 00:09:18.740
+and we passed in a message of hi and
+
+00:09:18.750 --> 00:09:21.199
+then so this came in and it saw that we
+
+00:09:21.209 --> 00:09:23.960
+had a function created here and then we
+
+00:09:23.970 --> 00:09:25.940
+returned that function and again no
+
+00:09:25.950 --> 00:09:29.389
+parenthesis so that function did not
+
+00:09:29.399 --> 00:09:33.290
+execute at that time so now our log hi
+
+00:09:33.300 --> 00:09:36.710
+variable is equal to this function
+
+00:09:36.720 --> 00:09:40.340
+that's what got returned from this so
+
+00:09:40.350 --> 00:09:41.660
+now we can run this log hi variable just
+
+00:09:41.670 --> 00:09:43.760
+like it's a function because it is a
+
+00:09:43.770 --> 00:09:47.150
+function so now we can treat this
+
+00:09:47.160 --> 00:09:49.730
+variable just like this function here
+
+00:09:49.740 --> 00:09:51.680
+and it doesn't take in any arguments so
+
+00:09:51.690 --> 00:09:53.420
+if we put in these parentheses here and
+
+00:09:53.430 --> 00:09:56.510
+what it's going to do is it's going to
+
+00:09:56.520 --> 00:09:58.820
+execute this log message and then it
+
+00:09:58.830 --> 00:10:01.670
+came in here and printed out the log
+
+00:10:01.680 --> 00:10:04.460
+with our message so one thing important
+
+00:10:04.470 --> 00:10:06.920
+to point out here is that from this step
+
+00:10:06.930 --> 00:10:09.889
+two when we executed the function at
+
+00:10:09.899 --> 00:10:12.370
+this step that it remembered our initial
+
+00:10:12.380 --> 00:10:15.319
+message that we passed in to this
+
+00:10:15.329 --> 00:10:18.500
+initial logger function now this is what
+
+00:10:18.510 --> 00:10:20.329
+we call a closure but again I'll go in
+
+00:10:20.339 --> 00:10:23.690
+more in-depth into closures in a future
+
+00:10:23.700 --> 00:10:25.310
+video but this just kind of knocks the
+
+00:10:25.320 --> 00:10:27.410
+point home that understanding these
+
+00:10:27.420 --> 00:10:29.870
+first-class functions will help you
+
+00:10:29.880 --> 00:10:32.420
+understand these more complex terms like
+
+00:10:32.430 --> 00:10:36.110
+closures and higher-order functions okay
+
+00:10:36.120 --> 00:10:38.680
+so why would returning a function from
+
+00:10:38.690 --> 00:10:41.510
+another function like this be useful
+
+00:10:41.520 --> 00:10:43.519
+well I tried to some of the practical
+
+00:10:43.529 --> 00:10:45.290
+examples of this can get really
+
+00:10:45.300 --> 00:10:48.260
+complicated really fast so I tried to
+
+00:10:48.270 --> 00:10:50.150
+make a semi practical example that we
+
+00:10:50.160 --> 00:10:51.769
+could look at and still understand
+
+00:10:51.779 --> 00:10:53.750
+pretty well so I'm just going to remove
+
+00:10:53.760 --> 00:10:56.360
+this logger function that I have here
+
+00:10:56.370 --> 00:10:59.170
+and uncomment out the rest of the code
+
+00:10:59.180 --> 00:11:02.600
+that we have here so let me do this in
+
+00:11:02.610 --> 00:11:04.370
+Python also and I'll just go ahead and
+
+00:11:04.380 --> 00:11:07.189
+run that and over here I'm going to
+
+00:11:07.199 --> 00:11:08.960
+clear out the console and run that code
+
+00:11:08.970 --> 00:11:11.269
+okay so let's see if we
+
+00:11:11.279 --> 00:11:13.999
+and understand what's going on here so I
+
+00:11:14.009 --> 00:11:17.329
+have a function here called HTML tag
+
+00:11:17.339 --> 00:11:20.420
+which takes in an argument called tag
+
+00:11:20.430 --> 00:11:23.389
+and within this function I have another
+
+00:11:23.399 --> 00:11:26.269
+function called rat text and wrap text
+
+00:11:26.279 --> 00:11:28.879
+takes in an argument called message and
+
+00:11:28.889 --> 00:11:33.290
+when you execute this wrap text function
+
+00:11:33.300 --> 00:11:35.840
+it prints out this it prints out the tag
+
+00:11:35.850 --> 00:11:37.490
+within opening brackets here and then it
+
+00:11:37.500 --> 00:11:39.499
+prints out the message and then it
+
+00:11:39.509 --> 00:11:41.210
+prints out the tag again in closing
+
+00:11:41.220 --> 00:11:44.179
+brackets and it does the same thing here
+
+00:11:44.189 --> 00:11:46.910
+in JavaScript so then back to our HTML
+
+00:11:46.920 --> 00:11:49.999
+tag function outside of the wrap text
+
+00:11:50.009 --> 00:11:52.730
+what we're doing is returning this wrap
+
+00:11:52.740 --> 00:11:55.009
+text function okay so now let's look at
+
+00:11:55.019 --> 00:11:58.100
+our examples so I have this variable
+
+00:11:58.110 --> 00:12:01.879
+called print h1 and I'm setting this
+
+00:12:01.889 --> 00:12:06.319
+equal to our HTML tag function and I'm
+
+00:12:06.329 --> 00:12:08.569
+passing in a an a string of h1 so at
+
+00:12:08.579 --> 00:12:11.329
+this point whenever I do that actually
+
+00:12:11.339 --> 00:12:13.549
+to kind of explain this a little bit
+
+00:12:13.559 --> 00:12:14.869
+better I'm going to comment out these so
+
+00:12:14.879 --> 00:12:16.999
+at this point it's not actually doing
+
+00:12:17.009 --> 00:12:18.860
+anything yet so you can see if I rerun
+
+00:12:18.870 --> 00:12:20.840
+this code it hasn't actually done
+
+00:12:20.850 --> 00:12:24.799
+anything and if I come down here and
+
+00:12:24.809 --> 00:12:27.860
+just print out this print h1 variable
+
+00:12:27.870 --> 00:12:30.889
+then you can see that it's just equal to
+
+00:12:30.899 --> 00:12:33.710
+this wrap text function so it's just
+
+00:12:33.720 --> 00:12:37.340
+waiting to be executed so now we can use
+
+00:12:37.350 --> 00:12:39.980
+this print h1 variable just like it's a
+
+00:12:39.990 --> 00:12:42.679
+function because it is a function and if
+
+00:12:42.689 --> 00:12:44.329
+I uncommon out these lines here now
+
+00:12:44.339 --> 00:12:47.449
+remember the function that we returned
+
+00:12:47.459 --> 00:12:52.400
+this wrap text function it takes in an
+
+00:12:52.410 --> 00:12:55.249
+argument called message so I can pass in
+
+00:12:55.259 --> 00:12:57.259
+I'm going to execute this print h1
+
+00:12:57.269 --> 00:12:59.420
+variable that we just created and I'm
+
+00:12:59.430 --> 00:13:02.389
+going to pass in the message of test
+
+00:13:02.399 --> 00:13:04.519
+headline and then down here I'm running
+
+00:13:04.529 --> 00:13:06.860
+this code again and I'm passing in a
+
+00:13:06.870 --> 00:13:09.290
+message of another headline so whenever
+
+00:13:09.300 --> 00:13:13.100
+I run this now you can see that it ran
+
+00:13:13.110 --> 00:13:16.069
+our wrap text function and it remembered
+
+00:13:16.079 --> 00:13:18.280
+the tag that we passed in before so it
+
+00:13:18.290 --> 00:13:21.259
+prints out the tag that we passed in the
+
+00:13:21.269 --> 00:13:22.260
+HTML tag function here and then it also
+
+00:13:22.270 --> 00:13:24.329
+printed it out
+
+00:13:24.339 --> 00:13:26.850
+our message that we passed into each of
+
+00:13:26.860 --> 00:13:29.010
+these variables which is equal to our
+
+00:13:29.020 --> 00:13:31.079
+rap text function and everything that
+
+00:13:31.089 --> 00:13:33.150
+I'm describing over here in Python is
+
+00:13:33.160 --> 00:13:35.370
+also the exact same thing that's
+
+00:13:35.380 --> 00:13:36.630
+happening over here in JavaScript you
+
+00:13:36.640 --> 00:13:39.900
+can see it's the exact same process
+
+00:13:39.910 --> 00:13:42.780
+setting this variable equal to HTML tag
+
+00:13:42.790 --> 00:13:45.990
+function passing in the tag of h1 it
+
+00:13:46.000 --> 00:13:49.050
+returns the wrap text function waiting
+
+00:13:49.060 --> 00:13:52.290
+for this message argument so now our
+
+00:13:52.300 --> 00:13:54.870
+print h1 variable is equal to that
+
+00:13:54.880 --> 00:13:57.360
+function that got returned waiting for
+
+00:13:57.370 --> 00:13:59.790
+that message so now we can execute this
+
+00:13:59.800 --> 00:14:02.910
+just like any other function we passed
+
+00:14:02.920 --> 00:14:05.370
+in our message and it printed out our
+
+00:14:05.380 --> 00:14:07.170
+tags with the message and then the
+
+00:14:07.180 --> 00:14:09.690
+closing tags and then just to illustrate
+
+00:14:09.700 --> 00:14:12.630
+the point a little further you can see
+
+00:14:12.640 --> 00:14:15.300
+that the same thing down here starting
+
+00:14:15.310 --> 00:14:17.370
+off with a paragraph tag instead so you
+
+00:14:17.380 --> 00:14:19.199
+can see that that that worked as well
+
+00:14:19.209 --> 00:14:21.389
+now there's a lot more practical
+
+00:14:21.399 --> 00:14:23.070
+examples that people use this
+
+00:14:23.080 --> 00:14:26.760
+functionality for a lot of people use
+
+00:14:26.770 --> 00:14:29.460
+this for logging and in python it's it's
+
+00:14:29.470 --> 00:14:31.199
+similar to how we use decorators and you
+
+00:14:31.209 --> 00:14:33.810
+can see how returning functions like
+
+00:14:33.820 --> 00:14:36.569
+this can get extremely complicated and
+
+00:14:36.579 --> 00:14:38.460
+confusing because it's easy to lose
+
+00:14:38.470 --> 00:14:40.110
+track of exactly what's going on and
+
+00:14:40.120 --> 00:14:42.600
+like I said I'll go further into
+
+00:14:42.610 --> 00:14:44.940
+closures and a future video but to
+
+00:14:44.950 --> 00:14:47.069
+understand those we really need to have
+
+00:14:47.079 --> 00:14:50.220
+a grasp on these first-class functions
+
+00:14:50.230 --> 00:14:52.050
+and how we can use these functions not
+
+00:14:52.060 --> 00:14:54.060
+just execute the functions but we can
+
+00:14:54.070 --> 00:14:56.579
+also pass them around just like any
+
+00:14:56.589 --> 00:14:59.280
+other variable we can assign them to
+
+00:14:59.290 --> 00:15:01.139
+variables we can pass them in as
+
+00:15:01.149 --> 00:15:03.960
+arguments like we did in our previous
+
+00:15:03.970 --> 00:15:06.569
+example and we can return these
+
+00:15:06.579 --> 00:15:08.130
+functions from other functions so
+
+00:15:08.140 --> 00:15:10.290
+hopefully after this video you get a
+
+00:15:10.300 --> 00:15:12.300
+sense of all the different things that
+
+00:15:12.310 --> 00:15:14.130
+you can do with those so I think that's
+
+00:15:14.140 --> 00:15:15.870
+going to do it for this video if you do
+
+00:15:15.880 --> 00:15:17.280
+have any questions just feel free to ask
+
+00:15:17.290 --> 00:15:19.110
+in the comment section below
+
+00:15:19.120 --> 00:15:22.600
+be sure to subscribe for future videos
+and thank you all for watching
+ 
+you
+
