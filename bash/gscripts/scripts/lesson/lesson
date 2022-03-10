@@ -1,0 +1,10 @@
+#! /bin/bash
+
+name=viktor
+echo $name
+
+echo 'Enter value of your variable'
+read a
+echo $a;
+read -p "Enter new value" a
+echo $a;

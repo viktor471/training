@@ -1,0 +1,13 @@
+#! /bin/bash
+
+b=$(($1 + 5))
+echo $b
+#for i in $(seq $1 $b);
+for((i=$1; i<=$b;i++))
+do
+	touch $i
+	git add $i
+	git commit -m  "added $i"
+done
+
+

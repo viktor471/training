@@ -1,0 +1,61 @@
+#! /bin/bash
+
+name=~/env/txt/diary/
+
+year=$(date +%Y)
+name+=$year
+
+if ! [ -d $name ]  
+then
+	mkdir $name 
+fi
+month=$(date +%b)
+name+="/"
+name+=$month
+if ! [ -d $name ]
+then
+	mkdir $name
+fi
+
+day=$(date +%d)
+name+="/"
+name+=$day
+time=$(date +%r)
+
+touch $name
+
+check() {
+	[ -z "$(tail -1 $name)" ] && fl_es=1 || fl_es=0
+ 	[[ "$(tail -1 $name)" =~ "^\ *$" ]] && fl_s=1 || fl_s=0
+	[ -s $name ] || fl_ef=1
+	if [[ fl_ef -ne 1  && ( fl_es -eq 1 || fl_s -eq 1 ) ]]
+	then
+		sed -i '$ d' $name
+		check
+	fi
+}
+
+check
+
+if [[ -f $name ]]
+then
+	if [[ $(expr match "$(echo $(tail -1 $name ))"  "..:..:.. ..") == 11 ]] 
+	then
+
+ 	sed  -i '$ d' $name
+		
+	echo $time >> $name
+	echo "" >> $name
+
+	vim $name +	
+	else
+		echo "" >> $name
+		echo $time >> $name
+		echo "" >> $name                        
+		vim $name +
+	fi
+else
+	echo $time >> $name
+		echo "" >> $name                        
+		vim $name +
+fi

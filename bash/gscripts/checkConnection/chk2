@@ -1,0 +1,84 @@
+#! /bin/bash
+
+func1(){
+	echo "nc -u 127.0.0.1 10001"
+	echo "client"
+	nc -u 127.0.0.1 10001
+}
+
+export -f func1
+
+$(terminal -e "bash -c func1")
+
+
+func2(){
+	echo "nc -u 127.0.0.1 10002"
+	echo "client"
+	nc -u 127.0.0.1 10002
+}
+
+export -f func2
+
+$(terminal -e "bash -c func2")
+
+
+func3(){
+	echo "nc -u 127.0.0.1 10003"
+	echo "client"
+	nc -u 127.0.0.1 10003
+}
+
+export -f func3
+
+$(terminal -e "bash -c func3")
+
+
+func4(){
+	echo "nc -u 127.0.0.1 10004"
+	echo "client"
+	nc -u 127.0.0.1 10004
+}
+
+export -f func4
+
+$(terminal -e "bash -c func4")
+
+func5(){
+	echo "nc -u -p 10005 -l"
+	echo "server"
+	nc -u -p 10005 -l
+}
+
+export -f func5
+
+$(terminal -e "bash -c func5")
+
+func6(){
+	echo "nc -u -p 10006 -l"
+	echo "server"
+	nc -u -p 10006 -l
+}
+
+export -f func6
+
+$(terminal -e "bash -c func6")
+
+func7(){
+	echo "nc -u -p 10007 -l"
+	echo "server"
+	nc -u -p 10007 -l
+}
+
+export -f func7
+
+$(terminal -e "bash -c func7")
+
+func8(){
+	echo "nc -u -p 10008 -l"
+	echo "server"
+	nc -u -p 10008 -l
+}
+
+export -f func8
+
+$(terminal -e "bash -c func8")

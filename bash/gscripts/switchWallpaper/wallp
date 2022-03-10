@@ -1,0 +1,5 @@
+#! /bin/bash
+DISPLAY=:0
+name="$(ls | shuf -n 1)"
+feh --bg-fill -d $name
+notify-send "$name"

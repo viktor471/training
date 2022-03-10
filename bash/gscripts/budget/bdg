@@ -1,0 +1,241 @@
+#! /bin/bash
+
+answer="0"
+year=$(date +%Y)
+month=$(date +%b)
+day=$(date +%d)
+
+if ! [ -d ~/texts/diary/budget/$year ]
+then
+	mkdir ~/texts/diary/budget/$year
+fi
+
+checkAnsw(){
+	echo $1
+	read -ra answ
+	if [[ $answ == "q" ]]
+	then
+		ex_condition=1
+	elif [[ $answ = "qq" ]]
+	then
+		ex_condition=2
+	fi
+	if [[ $1 == "quantity?" ]]
+	then
+		quant=$answ
+	elif [[ $1 == "price?" ]]
+	then
+		price=$answ
+	elif [[ $1 == "type your product" ]]
+	then 
+		answer=$answ
+	fi
+}
+
+record(){
+	echo "$answer | $quant | $price"
+	echo "Is it correct? [y/n]"
+	read answ
+	if [[ $answ == "yes" ]] | [[ $answ == "y" ]]
+	then
+		echo "$answer | $quant | $price" >> ~/texts/diary/budget/$year/$(date +%b-%d)
+	elif [[ $answ == "q" ]]
+	then
+		ex_condition=1;
+	elif [[ $answ == "qq" ]]
+	then
+	   ex_condition=2;	
+	fi
+}
+
+addPoint(){
+	while ( [[ $answer != "q" ]] || [[ $answer != "qq" ]] )
+	do
+		printf "[budget]"
+		read -ra answer
+		echo $answer
+
+		while [ $answer != "q" ]
+		do
+			checkAnsw "type your product";      condition
+			checkAnsw "quantity?";              condition
+			checkAnsw "price?";                 condition
+			record 										condition
+		done
+		
+		echo "exit adding points"
+	done
+}
+
+chooseYear(){
+			
+			showHelpYear()
+			{
+				echo "choose year. c - current. l - last year. l 1 - year before last and so on to"
+				echo "[number] - certain number of year"
+				echo "r - reset all date info"
+				echo "q - cancel"
+			}
+			
+			showHelpYear
+			
+			while 1
+			do
+				read -ra year
+				
+				case $year in
+			
+				[0-9]+)
+					year=$year
+					break
+					;;
+				
+				r)
+					year=$(date +%Y)
+					month=$(date +%b)
+					day=$(date +%d)
+					break
+					;;
+				q)
+					year=$(date +%Y)
+					break
+					;;
+				c)
+					year=$(date +%Y)
+					break
+					;;
+				l)
+					if [ -z ${year[1]} ]
+					then
+						year=$(( $(date +%Y) - 1))
+						break
+					elif [ isNumber ${year[1]} ]
+					then
+						extra=${year[1]}
+						year=$(( $(date +%Y) - extra))
+						break
+					fi
+					;;
+				h)
+					showHelpYear
+					;;
+				*)
+					echo "unsupported option. You can type h for help"
+					;;
+			esac
+				done
+}
+
+chooseDay(){
+			showHelpDay()
+			{
+				echo "choose day. c - current. y - yesterday. y 1 - day before yesterday"
+				echo "[number] - certain number of day in 1...31 range"
+				echo "r - reset all date info"
+				echo "q - cancel"
+			}
+			
+			showHelpYear
+			
+			while 1
+			do
+				read -ra year
+				
+				case $year in
+			
+				[0-9]+)
+					year=$year
+					break
+					;;
+				
+				r)
+					year=$(date +%Y)
+					month=$(date +%b)
+					day=$(date +%d)
+					break
+					;;
+				q)
+					year=$(date +%Y)
+					break
+					;;
+				c)
+					year=$(date +%Y)
+					break
+					;;
+				l)
+					if [ -z ${year[1]} ]
+					then
+						year=$(( $(date +%Y) - 1))
+						break
+					elif [ isNumber ${year[1]} ]
+					then
+						extra=${year[1]}
+						year=$(( $(date +%Y) - extra))
+						break
+					fi
+					;;
+				h)
+					showHelpYear
+					;;
+				*)
+					echo "unsupported option. You can type h for help"
+					;;
+			esac
+				done
+
+}
+
+isNumber()
+{
+	pat='^[0-9]+$'
+	if [[ $1 =~ $pat ]]; then
+		echo 1
+	else
+		echo 0
+	fi
+}
+
+alias condition="[ $ex_condition -eq 1 ] && break 1 || ( [ $ex_condition -eq 2 ] && break 2 )"
+alias empty="echo \"temporarily empty\""
+shopt -s expand_aliases
+
+answer="0"
+
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
+echo "=================budget: press h for help ===================="
+			answer="n";
+			
+while [[ $answer != "q" ]]
+do
+	printf "${red}[${green} budget ${red}]${reset} "
+	read answer arg arg2
+	case $answer in
+		h)
+			echo "========================================================================"
+			echo "      h: help"
+			echo "      l: check list"
+			echo "      a: add point"
+			echo "      e: edit list"
+			echo "      c: open certain file"
+			echo "      q: quit"
+			echo "========================================================================"
+			;;
+		a)
+			addPoint		
+			;;
+		l)
+			cat ~/texts/diary/budget/$year/$month/$(date +%b-%d)
+			;;
+		e)
+			vim ~/texts/diary/budget/$year/$month/$(date +%b-%d)
+			;;
+		c)
+			chooseYear
+			chooseMonth
+		q) 
+			break;
+	esac
+done

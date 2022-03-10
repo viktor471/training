@@ -1,0 +1,53 @@
+#! /bin/bash
+
+re='^[0-9]+$'
+exflag=0
+while getopts 'sj:ch' flag;
+do 
+	case $flag in 
+		s) 
+			while read line;
+			do
+				if [[ $line == "$(pwd)" ]]
+				then
+					exflag=1
+				fi
+			done < ~/place
+				if [[ $exflag != 1 ]]
+				then
+					echo $(pwd)	>> ~/place
+				fi
+			;;
+		j) 
+			target=$OPTARG
+			if [[ $target =~ $re ]]
+			then
+				cd $(head -$target ~/place)
+			else
+				echo "incorrect target folder"
+			fi
+			;;
+		c) 
+			cat -n ~/place
+			;;
+		h) 
+			echo "======================================================================"
+
+			echo "		-h help"
+			echo "		-c cat target-place file"
+			echo "		-j [number] jump to folder"
+			echo "		-s save current folder to target-place file"
+			echo "		whithout arguments program jumps to last saved folder"
+
+			echo "======================================================================"
+			;;
+	esac
+done
+
+	if [[ $# -eq 0 ]]
+	then
+		cd "$(tail -1 ~/place)"
+	fi
+
+exec bash
+shift $(( OPTIND - 1 ))

@@ -1,0 +1,200 @@
+#! /bin/bash
+
+lines=(`cat ~/place`)
+if [[ $# -eq 0 ]]
+	then
+		cd "$(tail -1 ~/place)"
+		exec bash
+		exit 0
+	fi
+
+re='^[0-9]+$'
+exflag=0
+while (("$#"));
+do
+	case "$1" in
+		[0-9]*)
+			cd "${lines[$(($1 - 1))]}"
+			shift
+			;;
+		"s")
+			while read line;
+			do
+				if [[ $line == "$(pwd)" ]]
+				then
+					exflag=1
+				fi
+			done < ~/place
+				if [[ $exflag != 1 ]]
+				then
+					echo $(pwd)	>> ~/place
+				fi
+				shift
+			;;
+		"c")
+			cat -n ~/place
+			shift
+			;;
+		"h")
+			echo "======================================================================"
+
+			echo "      h:        help"
+			echo "      c:        cat target-place file"
+			echo "      [number]: jumps to folder"
+			echo "      s:        saves current folder to target-place file"
+			echo "      ..:       move up"
+			echo "      d:        deletes nth string from target-place folder"
+			echo "      :         whithout arguments program jumps to last saved folder"
+			echo "      m:        interactive mode"
+			echo "      a:        add specific folder"
+			echo "======================================================================"
+			shift
+			;;
+		"..")
+			cd ..
+			shift
+			;;
+		"d")
+			echo "delete ${lines[$(($2 - 1))]} [y/n]?"
+			read a
+			if [[ $a == "y" ]]
+			then
+				sed -i $2d ~/place
+				cat -n ~/place
+			fi
+			shift;
+			shift;
+			;;
+				"a")
+			while read line;
+			do
+				if [[ $line == $2 ]]
+				then
+					exflag=1
+				fi
+			done < ~/place
+				if [[ $exflag != 1 ]]
+				then
+					echo $2	>> ~/place
+				fi
+				shift
+			;;
+
+				"m")
+			echo "=================Interactive mode: press h for help ===================="
+			answer="n";
+			while [[ $answer != "q" ]]
+			do
+				printf "[i mode] "
+				read answer arg
+				case $answer in
+					h)
+echo "======================================================================"
+echo "      h: -------------- help"
+echo "      c: -------------- cat target-place file"
+echo "      j [number]: ----- jumps to folder from target-place file"
+echo "      s: -------------- saves current folder to target-place file"
+echo "      d: -------------- deletes nth string from target-place folder"
+echo "      jj: ------------- jumps to last saved folder"
+echo "      l: -------------- list folders in current folder"
+echo "      ls: ------------- list all files in current folder"
+echo "      v [filename]: --- open file with vim"
+echo "      u or ..: -------- move up"
+echo "      q: -------------- exit from interactive mode"
+echo "      [number]: ------- jump to nth folder in current folder"
+echo "      mk [foldername]:  creates folder"
+echo "      t: -------------- touch file"
+echo "      rm [filename]: -- rm file"
+echo "      rmd: ------------ rm folder"
+echo "      mv [file]: ------ mv file"
+echo "      e [file]: ------- execute"
+echo "      p: -------------- pwd"
+echo "      r: -------------- readlink of current file"
+echo "      !(cmd): --------- execute terminal command"
+echo "======================================================================"
+						;;
+					ls)
+						ls	
+						;;
+					v)
+						vim $arg
+						;;
+					l)
+						str=(*/)
+						for i in "${!str[@]}"; 
+						do
+							echo "$(($i+1)): ${str[i]}"
+						done
+						;;
+
+					jj)
+						cd $(head -1 ~/place)
+						pwd;
+						;;
+					
+					j)
+						cd "${lines[$(($arg - 1))]}"
+						pwd
+						;;
+					
+					s)
+						while read line;
+						do
+							if [[ $line == "$(pwd)" ]]
+							then
+								exflag=1
+							fi
+						done < ~/place
+						
+						if [[ $exflag != 1 ]]
+						then
+							echo $(pwd)	>> ~/place
+						fi
+						cat -n ~/place
+
+						;;
+					
+					c)
+						cat -n ~/place
+						;;
+					
+					..)
+						cd ..
+						pwd
+						;;
+					u)
+						cd ..
+						pwd
+						;;
+					a)
+						while read line;
+						do
+							if [[ $line == $2 ]]
+							then
+								exflag=1
+							fi
+						done < ~/place
+						if [[ $exflag != 1 ]]
+						then
+							echo $2	>> ~/place
+						fi
+						;;
+					d)
+						echo "delete ${lines[$(($arg - 1))]} [y/n]?"
+						read a
+						if [[ $a == "y" ]]
+							then
+								sed -i $2d ~/place
+								cat -n ~/place
+							fi
+						;;
+				esac
+			done
+
+			shift;
+			;;
+	esac
+done
+
+exec bash
+shift $(( OPTIND - 1 ))

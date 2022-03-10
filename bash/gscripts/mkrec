@@ -1,0 +1,3 @@
+dat="$(date)"
+
+vim ${dat// /.}

@@ -1,0 +1,5 @@
+rsync -av --delete $(readlink -f $1) ~/backup/$1.mgnome
+echo "rsync -av --delete $(readlink -f $1) ~/backup/$1.mgnome" >> ~/gscripts/bckp
+rsync -av --delete $(readlink -f $1) ~/backup/$1.mgnome
+echo "rsync -av --delete $(readlink -f $1) ~/backup/$1.mgnome" >> ~/gscripts/bckp
+echo $(readlink -f $1) >> ~/.gitignore

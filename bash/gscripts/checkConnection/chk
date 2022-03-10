@@ -1,0 +1,45 @@
+#! /bin/bash
+
+export -f func4
+
+$(terminal -e "bash -c func4")
+
+func5(){
+	echo "nc -u -p 10005 -l"
+	echo "server"
+	nc -u -p 10005 -l
+}
+
+export -f func5
+
+$(terminal -e "bash -c func5")
+
+func6(){
+	echo "nc -u -p 10006 -l"
+	echo "server"
+	nc -u -p 10006 -l
+}
+
+export -f func6
+
+$(terminal -e "bash -c func6")
+
+func7(){
+	echo "nc -u -p 10007 -l"
+	echo "server"
+	nc -u -p 10007 -l
+}
+
+export -f func7
+
+$(terminal -e "bash -c func7")
+
+func8(){
+	echo "nc -u -p 10008 -l"
+	echo "server"
+	nc -u -p 10008 -l
+}
+
+export -f func8
+
+$(terminal -e "bash -c func8")

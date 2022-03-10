@@ -1,0 +1,8 @@
+wget --no-check-certificate -O /usr/local/bin/bd https://raw.github.com/vigneshwaranr/bd/master/bd
+chmod +rx /usr/local/bin/bd
+echo 'alias bd=". bd -si"' >> ~/.bashrc
+source ~/.bashrc
+
+# If you need autocomplete support, follow these two steps
+wget -O /etc/bash_completion.d/bd https://raw.github.com/vigneshwaranr/bd/master/bash_completion.d/bd
+source /etc/bash_completion.d/bd

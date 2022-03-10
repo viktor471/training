@@ -1,0 +1,536 @@
+#! /bin/bash
+# TODO 
+# * add checking exist file or not
+# * убрать лишние пункты меню
+# * реализовать быстрый режим
+# * по возможности то, что целесообразно запихнуть в функции запихнуть в функции
+# * доделать оставшиеся функции
+# * попытаться реализовать псевдографический интерфейс
+# * добавить перемещение в конец строки из tagret-place файла
+
+exflag=0
+lines=(`cat ~/place`)
+hlines=$(cat ~/hplaces)
+
+checkarg () {
+
+	if [[ $1 == 1 ]]
+	then
+		if [ -z $3 ]
+		then
+			echo $2 
+		else
+			$(x() $3)
+		fi
+	fi
+	if [[ $1 == 2 ]]
+	then 
+		if [ -z  $4 ]
+		then
+			echo $2
+		else
+			$(x() $3 $4)
+		fi
+	fi
+
+}
+# ====================== ifnteractive mode =======================
+
+interactive () {
+
+echo "=================Interactive mode: press h for help ===================="
+			answer="n";
+			while [[ $answer != "q" ]]
+			do
+				printf "[i mode] "
+				read answer arg arg2
+				echo $arg
+				case $answer in
+					h)
+echo "========================================================================"
+echo "      h: ---------------- help"
+echo "      f: ---------------- fast mode"
+echo "      c: ---------------- cat target-place file"                                      					#
+echo "      [number]: --------- jumps to folder from target-place file"												#
+echo "      s: ---------------- saves current folder to target-place file"                               
+echo "      d [number]: ------- deletes nth string from target-place folder"
+echo "      j: ---------------- jumps to last saved folder"
+echo "      j [number]; ------- change to directory from l list"
+echo "      sl [number]: ------ move string with specified number to the end of target file"
+echo "      l: ---------------- list folders in current folder"
+echo "      ls: --------------- list all files in current folder"
+echo "      v (vim) [file]: --- open file with vim"
+echo "      u or ..: ---------- move up"
+echo "      q: ---------------- exit from program"
+echo "      [number]: --------- jump to nth folder in current folder"
+echo "      mk [foldername]: -- creates folder"
+echo "      t [filename]: ----- touch file"
+echo "      rm [file|folder]: - rm file"
+echo "      mv [file] [dest]: - mv file"
+echo "      e [file]: --------- execute"
+echo "      gt [number]: ------ record nth line from target-place file to variable nth"
+echo "      gt: --------------- print (echo) nth variable"
+echo "      p: ---------------- pwd. path of current directory. It will saved in pthd"
+echo "      sp: --------------- print (echo, show) pthd variable"
+echo "      h: ---------------- show history of places"
+echo "      ht: --------------- get history line in pthd variable"
+echo "      hs: --------------- save history line with specific number in target-place file"
+echo "      rpth: ----------------- record pthd variable in target place file"
+echo "      diff [file1] [file2]: - get difference between two files"
+echo "      r [file]: ------------- get path of specified file. Path will saved in pthf variable"
+echo "      !(cmd): --------------- execute terminal command"
+echo "      clear: ---------------- clear target-place file"
+echo "========================================================================"
+						;;
+
+					sl)
+						if ! [ -z "$arg" ]
+						then 
+							if [[ ${#lines[@]} < $arg ]]
+							then
+								echo "value of argument is larger than quantity of lines in file"
+							else
+								line="${lines[$(($arg - 1))]}"
+								echo $line
+								sed -i "$arg d" ~/place
+								echo $line >> ~/place
+								echo ==================
+								cat -n ~/place
+								lines=$(`cat ~/place`)
+							fi
+						else
+							echo "argument with number of line is needed"
+						fi
+						;;
+
+					hs)
+						if [ -z $arg ]
+						then
+							if [ -z $nth ]
+							then
+								echo "variable nth is empty"
+							else
+								echo $nth
+							fi
+						else
+							if [[ $arg == [0-9]+ ]]
+							then 
+								nth="${lines[$(($answer - 1))]}"
+							else
+								echo "argument must be number"
+							fi
+						fi
+						;;
+
+					h)
+						cat ~/hplaces
+						;;
+
+					sp)
+						if [ -z $pthd ]
+						then 
+							echo "variable pthd is empty"
+						else
+							echo $pthd
+						fi
+						;;
+
+					p)
+						pwd
+						pthd=$(pwd)
+						;;
+
+					m)
+			
+						if [ -z $arg ] 
+						then 
+							echo zero
+						fi
+						;;
+
+					gt)
+						if [ -z $arg ]
+						then
+							if [ -z $nth ]
+							then
+								echo "variable nth is empty"
+							else
+								echo $nth
+							fi
+						else
+							if [[ $arg == [0-9]+ ]]
+							then 
+								nth="${lines[$(($answer - 1))]}"
+							else
+								echo "argument must be number"
+							fi
+						fi
+						;;
+
+					e)
+						if [ -z $arg ] 
+						then 
+							echo "argument is required" 
+						else
+							./$arg
+						fi
+						;;
+
+					mv)
+						if [ -z $arg2 ]
+						then 
+							echo "two arguments are required" 
+						else
+							mv $arg $arg2
+						fi
+						;;
+
+					rm)
+						if [[ -f $arg ]]
+						then
+							echo "remove $arg FILE?"
+							read answ
+							if [ $answ == "y" ]||[ $answ == "yes" ]
+							then 
+								rm $arg
+							fi
+						fi
+
+						if [[ -d $arg ]]
+						then 
+							echo "remove $arg FOLDER?"
+							read answ
+							if [[ $answ == "y"||"yes" ]]
+							then
+								rm -r $arg
+							fi
+						fi
+
+						if [ -z $arg ]
+						then
+							echo "argument is required"
+						fi
+						;;
+
+					t)
+						if [ -z $arg ]
+						then
+							echo "argument is required"
+						else
+							touch $arg
+						fi
+						;;
+
+					mk) 
+						if [ -z $arg ]
+						then
+							echo "argument is required"
+						else
+							mkdir $arg
+						fi
+						;;
+
+					"ls")
+						ls	
+						;;
+
+					clear)
+						echo "are you sure? Type \"yes\" if you really want it"
+						read answ
+						if [[ $answ == "yes" ]]
+						then
+							>~/place
+							lines=""
+						fi
+						;;
+
+					v) 
+						if [ -z $arg ]
+						then
+							echo "argument is required"
+						else
+							vim $arg
+						fi
+						;;
+
+					vim)
+						if [ -z $arg ]
+						then
+							echo "argument is required"
+						else
+							vim $arg
+						fi
+						;;
+
+					l)
+						files=(*)
+						folders=(*/)
+						szf=${#files[@]}
+						szd=${#folders[@]}
+						letters={a..b}	
+						for i in $szf; 
+						do
+							if [[ $i < szf ]]
+							then
+								printf "${letters[$(($i+1))]}: ${folders[$i]}" 
+								if [[ -f ${files[$i]} ]]
+								then
+           						printf  "${files[$i]}\n"
+								fi
+							fi
+						done
+						;;
+
+					j)
+						cd $(tail -1 ~/place)
+						echo $(tail -1 ~/place) >> ~/hplaces	
+						pwd;
+						;;
+
+					[0-9]*)
+						cd "${lines[(($answer - 1))]}"
+						echo "${lines[(($answer - 1))]}" >> ~/hplaces
+						pwd
+						;;
+					
+					s)
+						if [ -s ~/place ]
+						then
+							while read line;
+							do
+								if [[ $line == "$(pwd)" ]]
+								then
+									exflag=1
+								else
+									exflag=0
+								fi
+								done < ~/place
+						else
+							exflag=0
+						fi
+						
+							if [[ $exflag != 1 ]]
+							then
+								echo $(pwd)	>> ~/place
+								echo $(pwd)
+								echo ==================
+ 
+								lines=$(cat ~/place)
+							fi
+							cat -n ~/place
+						;;
+					
+					c)
+						cat -n ~/place
+						;;
+					
+					..)
+						cd ..
+						echo $(pwd) >> ~/hplaces
+						pwd
+						;;
+
+					u)
+						cd ..
+						echo $(pwd) >> ~/hplaces
+						pwd
+						;;
+
+					a)
+						if [ -z $arg ]
+						then
+							echo "argument is required"
+						else
+							while read line;
+							do
+								if [[ $line == $arg ]]
+								then
+									exflag=1
+								fi
+							done < ~/place
+							if [[ $exflag != 1 ]]
+							then
+								echo $arg	>> ~/place
+								lines=$(cat ~/place)
+								cat -n ~/place
+							fi
+						fi
+						;;
+
+					d)
+						if [ -z $arg ]
+						then
+							echo "argument is required"
+						else
+							echo "delete ${lines[$(($arg - 1))]} [y/n]?"
+							read a
+							if [[ $a == "y" ]]
+							then
+								sed -i "$arg d" ~/place
+								lines=$(cat ~/place)
+								cat -n ~/place
+
+							fi
+						fi
+						;;
+
+					f) 
+						#fast()
+						;;
+
+					*) 
+						if [[ $answer != q ]] 
+							then
+								echo "unsupported option"
+						fi
+						;;
+
+				esac
+			done
+
+} #=================== end of function =========================
+
+#fast () {
+		
+#}
+if [[ $# -eq 0 ]]
+	then
+		cd "$(tail -1 ~/place)"
+		echo $(pwd) >> ~/hplaces
+		lines=$(cat ~/place)
+		exec bash
+		exit 0
+	fi
+unsup=0
+
+while (("$#"));
+do
+	case "$1" in
+		
+		"h")
+			echo "======================================================================"
+
+			echo "      h:        help"
+			echo "      f:        fast mode"
+			echo "      i:        interactive mode"
+			echo "      c:        cat target-place file"
+			echo "      [number]: jumps to folder"
+			echo "      s:        saves current folder to target-place file"
+			echo "      ..:       move up"
+			echo "      d:        deletes nth string from target-place folder"
+			echo "      :         whithout arguments program jumps to last saved folder"
+			echo "      a:        add specific folder"
+			echo "      clear:        clear target-place file"
+			echo "======================================================================"
+			shift
+			;;
+
+		[0-9]*)
+			cd "${lines[$(($1 - 1))]}"
+			echo "${lines[$(($1 - 1))]}" >> ~/hplaces
+			pwd
+			shift
+			;;
+
+		"s")
+			while read line;
+			do
+				if [[ $line == "$(pwd)" ]]
+				then
+					exflag=1
+				fi
+			done < ~/place
+				if [[ $exflag != 1 ]]
+				then
+					echo $(pwd)	>> ~/place
+					lines=$(cat ~/place)
+				fi
+				cat -n ~/place
+				shift
+			;;
+
+		"c")
+			cat -n ~/place
+			shift
+			;;
+
+		"..")
+			cd ..
+			echo $(pwd) >> ~/hplaces
+			pwd
+			shift
+			;;
+
+		"d")
+			echo "delete ${lines[$(($2 - 1))]} [y/n]?"
+			read a
+			if [[ $a == "y" ]]
+			then
+				sed -i $2d ~/place
+				lines=$(cat ~/place)
+				cat -n ~/place
+			fi
+			shift;
+			shift;
+			;;
+
+		"a")
+			if ! [ -z $2 ]
+			then
+				while read line;
+				do
+					if [[ $line == $2 ]]
+					then
+						exflag=1
+					fi
+				done < ~/place
+				
+				if [[ $exflag != 1 ]]
+				then
+					echo $2	>> ~/place
+					lines=$(cat ~/place)
+				fi
+				cat -n ~/place
+			else
+				echo "argument with path is needed"
+			fi
+			
+			shift
+			shift
+			;;
+
+		"i")
+			interactive	
+			shift;
+			;;
+
+		"f")
+			fast
+			shift
+			;;
+
+		"clear")
+			echo "are you sure? Type \"yes\" if you really want it"
+			read answ
+			if [[ $answ == "yes" ]]
+			then
+				>~/place
+				lines=$(cat ~/place)
+			fi
+			shift
+			;;
+
+		*) 
+			if [[ $unsup == 0 ]]
+			then
+				echo "unsupported argument"
+			fi
+			unsup=1
+			shift;
+			;;
+
+	esac
+done
+exec bash
+
+shift $(( OPTIND - 1 ))

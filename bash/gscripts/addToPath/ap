@@ -1,0 +1,48 @@
+#! /bin/bash
+
+while (($#))
+do
+	case $1 in
+	
+		h)
+			echo "========================================================================"
+			echo "      h: ---------------- help"
+			echo "      f: ---------------- "
+			
+			shift;
+			;;
+		a) 
+			path=$(readlink -f .)
+			home="/home/vikt"
+			path=${path/$home/\~}
+
+			echo $path
+				
+			if ! grep  -q "$path" ~/path; then
+				echo "add $path" >> ~/path
+			else
+				echo ==============
+				echo already exists
+			fi
+			
+			shift
+			shift
+			shift
+			;;
+		l)
+			IFS=''
+			searchPattern="add "
+			paths=($(grep  --null "add .[^$]" ~/path))
+			for i in $paths
+			do
+				src=$i
+				echo ${searchPattern//src}
+				echo $i
+			done
+
+			shift
+			;;
+		*)
+			echo "unsuported option"
+	esac
+done

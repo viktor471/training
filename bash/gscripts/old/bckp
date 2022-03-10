@@ -1,0 +1,7 @@
+rsync -av --delete ~/.bashrc ~/backup/.bashrc.gnome
+rsync -av --delete ~/.gitignore ~/backup/.gitignore.gnome
+rsync -av --delete ~/.gitconfig ~/backup/.gitconfig.gnome
+rsync -av --delete ~/.vimrc ~/backup/.vimrc.gnome
+rsync -av --delete ~/gscripts/bckpo ~/backup/bckpo.gnome
+rsync -av --delete ~/gscripts/bckp ~/backup/bckp.gnome
+rsync -av --delete ~/.bashrc ~/backup/.bashrc.gnome

@@ -1,0 +1,5 @@
+filename='file.txt'
+while read line; 
+do echo $line;
+if($line == alias*) echo $line
+done < file.txt

@@ -1,0 +1,34 @@
+#! /bin/bash
+
+str=$(date)
+year=$(date +%Y)
+month=$(date +%b)
+day=$(date +%d)
+name=~/texts/diary/plan/$year/$month
+
+if ! [ -d $name ]
+then
+	mkdir -p $name
+fi
+
+name+="/"
+name+=$day
+touch $name
+
+check() {
+	[ -z "$(tail -1 $name)" ] && fl_es=1 || fl_es=0
+ 	[[ "$(tail -1 $name)" =~ "^\ *$" ]] && fl_s=1 || fl_s=0
+	[ -s $name ] || fl_ef=1
+	if [[ fl_ef -ne 1  && ( fl_es -eq 1 || fl_s -eq 1 ) ]]
+	then
+		sed -i '$ d' $name
+		check
+	fi
+}
+
+check
+
+
+echo "" >> $name
+vim + $name 
+

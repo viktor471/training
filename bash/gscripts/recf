@@ -1,0 +1,3 @@
+#! /bin/bash
+
+echo $1 | col -bx >> $2

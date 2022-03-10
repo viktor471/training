@@ -1,0 +1,50 @@
+#! /bin/bash
+
+echo "======== actual life questions ======="
+
+while 1
+			do
+				read -ra year
+				
+				case $year in
+			
+				[0-9]+)
+					year=$year
+					break
+					;;
+				
+				r)
+					year=$(date +%Y)
+					month=$(date +%b)
+					day=$(date +%d)
+					break
+					;;
+				q)
+					year=$(date +%Y)
+					break
+					;;
+				c)
+					year=$(date +%Y)
+					break
+					;;
+				l)
+					if [ -z ${year[1]} ]
+					then
+						year=$(( $(date +%Y) - 1))
+						break
+					elif [ isNumber ${year[1]} ]
+					then
+						extra=${year[1]}
+						year=$(( $(date +%Y) - extra))
+						break
+					fi
+					;;
+				h)
+					showHelpYear
+					;;
+				*)
+					echo "unsupported option. You can type h for help"
+					;;
+			esac
+				done
+

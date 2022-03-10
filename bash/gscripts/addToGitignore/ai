@@ -1,0 +1,54 @@
+#! /bin/bash
+# TODO 
+# * проверить есть ли совпадающие строки в гитигнор и ансверес. Внести только те, которые отсутствуют
+# * добавить ответы, разделить по группам
+# * добавить поддержку флагов
+# * искать репозиторий git и создавать .gitignore на его уровне
+# * answeres держать на том же уровне?
+
+files=$(echo .* *)
+name=""
+
+while [[ $(pwd) != ~ || / ]]
+do
+	if find . -name .git
+	then
+		break
+	else
+		cd ..
+	fi
+done
+
+if [[ $(pwd) == ~ ]]
+then
+ 	! [[ -d ~/.config ]] && mkdir ~/.config
+	name=~/.config/answeres
+else
+	name=answeres
+fi
+
+for i in $files 
+do
+	if  ! grep -q "^[/! ]*$i[ ]*$" ~/.gitignore; 
+	then
+		if [ "$i" != "." ] && [ "$i" != ".." ]
+		then
+			echo "Record $i to .gitignore? [y/n]"
+			read answ
+			if [[ $answ == y || yes ]]
+			then
+				echo $i >> .gitignore
+				echo $answ $i >> $name 
+			fi
+		fi
+	fi
+done
+
+ignores=$(cat .gitignore)
+answeres=$(cat ~/.config/answeres)
+	
+for i in $answeres
+do
+	for k in $ignores
+	do
+		if [[ $i = "^[/ ]

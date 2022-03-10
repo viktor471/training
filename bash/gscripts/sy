@@ -1,0 +1,7 @@
+git pull https://github.com/viktor471/home.git
+git add texts gscripts scripts
+git commit -m "$(date)"
+git push https://github.com/viktor471/home.git --alow-unrealted-histories
+
+
+

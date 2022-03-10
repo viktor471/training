@@ -1,0 +1,1 @@
+find . -name *.py -or -name *.conf -or -name *.yaml -or -name *.sql -or -name *.txt -or -name *.ini -or -name *.yml -or -name *.json -or -name *.sh -or -name *.md -or -name *.service -or -name *.nix -or -name *.types -or -name *.tpl -or -name *.php -or -name *.js -or -name *.cc -or -name *.html -or -name *.h -or -name *.c -or -name *.hpp -or -name *.html | xargs wc -l
