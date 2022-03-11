@@ -5,7 +5,7 @@ FROM mysql
 ENV MYSQL_ROOT_PASSWORD f
 
 # Add a database
-ENV MYSQL_DATABASE domains
+ENV MYSQL_DATABASE pytests
 
 # Add user credentials
 ENV MYSQL_USER viktor
@@ -15,7 +15,7 @@ ENV MYSQL_PASSWORD ff
 # All scripts in docker-entrypoint-initdb.d/ are automatically
 # executed during container startup
 
-ADD create-table.sql /docker-entrypoint-initdb.d
+ADD pytest.sql /docker-entrypoint-initdb.d
 #ADD sql-scripts/* /docker-entrypoint-initdb.d/
 #ADD sql-scripts/insert_additional_data.sql /docker-entrypoint-initdb.d
 EXPOSE 5007

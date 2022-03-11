@@ -10,4 +10,4 @@ CREATE TABLE Persons(
 INSERT INTO Persons (FirstName,LastName)
 VALUES ('Lars','Monsen');
 
-select * from domains;
+-- select * from domains;

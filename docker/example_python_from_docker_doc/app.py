@@ -14,7 +14,7 @@ def get_widgets():
     host="mysqldb",
     user="root",
     password="f",
-    database="inventory"
+    database="pytests"
   )
   cursor = mydb.cursor()
 

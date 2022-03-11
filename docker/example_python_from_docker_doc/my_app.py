@@ -1,41 +1,31 @@
 import mysql.connector
+from mysql.connector import Error
 import json
-from flask import Flask
 
 DB_CONFIG = {
     'user': 'root',
     'password': 'f',
     'host': 'mysqldb',
-    'database': 'domains'
+    'database': 'pytests'
 }
 
-file = "prepare_database.sql"
 if __name__ == "__main__":
-  cnx = mysql.connector.connect(
-    **DB_CONFIG
-    # host="mysqldb",
-    # user="root",
-    # password="p@ssw0rd1",
-    # database="pytest"
-  )
-  
-  cursor = cnx.cursor()
-  file = open(file)
-  sql = file.read()
-  results = cursor.execute(sql, multi=True)
+  query = "insert into domains (name, allow) values ('mysite.com', 1)"
 
-  print("results type:", type(results))
+  try:
+    conn = mysql.connector.connect(**DB_CONFIG)
 
-  print("======== results:")
-  print(results)
-  print("===================")
+    cursor = conn.cursor()
+    cursor.execute(query)
+    res = [item for item in cursor]
+    print(res)
+    conn.commit()
 
-  for result in results:
-    if result.with_rows:
-        print("Rows produced by statement '{}':".format(
-            result.statement))
-        print(result.fetchall())
-    else:
-        print("Number of rows affected by statement '{}': {}".format(
-            result.statement, result.rowcount))
-  cnx.close() 
+    cursor.close()
+    conn.close()
+
+  except Error as error:
+        print(error)
+
+  finally:
+    pass
