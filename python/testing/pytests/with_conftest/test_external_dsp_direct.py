@@ -7,5 +7,5 @@ class TestPrepare:
     """
     @pytest.mark.manual
     def test_fill_db(self, db, prepare_db, httpserver_listen_address):
-        httpserver_url = f'http://{httpserver_listen_address[0]}:{httpserver_listen_address[1]}'
-        db.query_from_file('pytest.sql', {'@URL@': httpserver_url})
+        print("manual test fill bd")
+        # db.query_from_file('pytest.sql', {'@URL@': httpserver_url})
