@@ -1,89 +1,104 @@
 import pytest
+from utils.logger import Logger
 
 @pytest.fixture(scope="session", autouse=True)
 def dsp_router(request):
-    print("begin fixture session dsp_router, a:")
-    yield
-    print("end fixture session dsp_router:")
+    Logger().record_exec_order(position="begin", scope="session", autouse=True)
+    yield "dsp_router returned value"
+    Logger().record_exec_order(position="end", scope="session", autouse=True)
 
 @pytest.fixture(scope="session")
 def ssp_def_ep():
-    print("fixture ssp_def_ep:")
+    Logger().record_exec_order(scope="session")
 
 @pytest.fixture(scope="session")
 def ssp_unity_ep():
-    print("fixture session ssp_unity_ep:")
+    Logger().record_exec_order(scope="session")
 
 @pytest.fixture(scope="session")
 def ssp_unity_ep():
-    print("fixture session ssp_unity_ep:")
+    Logger().record_exec_order(scope="session")
 
 @pytest.fixture(scope="session")
 def ssp_mopub_ep():
-    print("fixture session ssp_mobup_ep:")
+    Logger().record_exec_order(scope="session")
 
 @pytest.fixture(scope="session")
 def ssp_doubleverify_ep():
-    print("fixture session ssp_doubleverify_ep:")
+    Logger().record_exec_order(scope="session")
 
 @pytest.fixture(scope="session")
 def db():
-    print("fixture session db:")
+    Logger().record_exec_order(scope="session")
 
 @pytest.fixture(scope="session")
 def prepare_db(db):
-    print("fixture session prepare_db:")
+    Logger().record_exec_order(scope="session")
 
 def check_plan_updated(db):
-    print("check_plan_updated:")
+    Logger().record_arbitrary_log("check_plan_updated", add_to_exec_log=True)
 
 @pytest.fixture(scope="function")
 def ep_direct_vast(db):
-    print("begin fixture function ep_direct_vast:")
-    yield
-    print("end fixture function ep_direct_vast:")
+    Logger().record_exec_order(position="begin", scope="function")
+    yield "ep_direct_vast returned value"
+    Logger().record_exec_order(position="end", scope="function")
+
 
 @pytest.fixture(scope="function")
 def ep_rtb_rtb_usd(db):
-    print("begin fixture function ep_rtb_rtb_usd:")
-    yield print("end fixture function ep_rtb_rtb_usd:")
+    Logger().record_exec_order(position="begin", scope="function")
+    yield "ep_rtb_rtb_usd returned value"
+    Logger().record_exec_order(position="end", scope="function")
 
 @pytest.fixture(scope="function")
 def ep_rtb_rtb_usd_no_extra_fields(db):
-    print("begin fixture function ep_rtb_rtb_usd_no_extra_fields:")
-    yield print("end fixture function ep_rtb_rtb_usd_no_extra_fields:")
-
+    Logger().record_exec_order(position="begin", scope="function")
+    yield "ep_rtb_rtb_usd_no_extra_fields return value"
+    Logger().record_exec_order(position="end", scope="function")
 
 @pytest.fixture(scope="function")
 def ep_rtb_rtb_usd_limit_req_daily(db):
-    print("begin fixture function ep_rtb_rtb_usd_limit_req_daily:")
-    yield print("end fixture function ep_rtb_rtb_usd_limit_req_daily:")
+    Logger().record_exec_order(position="begin", scope="function")
+    yield "ep_rtb_rtb_usd_limit_req_daily returned value"
+    Logger().record_exec_order(position="end", scope="function")
+
 
 @pytest.fixture(scope="session")
 def ep_rtb_rtb_usd_ssp_list(db):
-    print("begin fixture session ep_rtb_rtb_usd_ssp_list:")
-    yield print("end fixture session ep_rtb_rtb_usd_ssp_list:")
+    Logger().record_exec_order(position="begin", scope="session")
+    yield "ep_rtb_rtb_usd_ssp_list return value"
+    Logger().record_exec_order(position="end", scope="session")
+
 
 @pytest.fixture(scope="session")
 def ep_rtb_rtb_usd_domain_allow_list(db):
-    print("begin fixture session ep_rtb_rtb_usd_domain_allow_list:")
-    yield print("end fixture session ep_rtb_rtb_usd_domain_allow_list:")
+    Logger().record_exec_order(position="begin", scope="session")
+    yield "ep_rtb_rtb_usd_domain_allow_list returned value"
+    Logger().record_exec_order(position="end", scope="session")
+
 
 @pytest.fixture(scope="function")
 def ep_rtb_rtb_usd_cache_v2(db):
-    print("begin fixture function ep_rtb_rtb_usd_cache_v2:")
-    yield print("begin fixture function ep_rtb_rtb_usd_cache_v2:")
+    Logger().record_exec_order(position="begin", scope="function")
+    yield "ep_rtb_rtb_usd_cache_v2 returned value"
+    Logger().record_exec_order(position="end", scope="function")
+
 
 @pytest.fixture(scope="function")
 def ep_rtb_rtb_rew(db):
-    print("begin fixture function ep_rtb_rtb_rew:")
-    yield print("begin fixture function ep_rtb_rtb_rew:")
+    Logger().record_exec_order(position="begin", scope="function")
+    yield "ep_rtb_rtb_rew returned value"
+    Logger().record_exec_order(position="end", scope="function")
+
 
 @pytest.fixture(scope="function")
 def ep_rtb_rtb_rub(db):
-    print("begin fixture function ep_rtb_rtb_rub:")
-    yield print("begin fixture function ep_rtb_rtb_rub:")
+    Logger().record_exec_order(position="begin", scope="function")
+    yield "ep_rtb_rtb_rub returned value"
+    Logger().record_exec_order(position="end", scope="function")
+
 
 @pytest.fixture(scope="session")
 def httpserver_listen_address():
-    print("fixture session httpserver_listen_address:")
+    Logger().record_exec_order(scope="session")
