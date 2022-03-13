@@ -31,12 +31,18 @@ class DB:
         try:
             cnx = self._connect()
             cursor = cnx.cursor()
-            cursor.execute(q)
-            res = [item for item in cursor]
+
+            for result in cursor.execute(q, multi=True):
+                if result.with_rows:
+                    print("Rows produced by statement '{}':".format(
+                        result.statement))
+                    print(result.fetchall())
+                else:
+                    print("Number of rows affected by statement '{}': {}".format(
+                        result.statement, result.rowcount))
             cnx.commit()
             cursor.close()
             cnx.close()
-            return res
 
         except Error as error:
             print(error)
