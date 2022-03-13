@@ -110,3 +110,4 @@ Thumbs.db
 *.exe
 .git
 .gitignore
+*.log
