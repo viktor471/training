@@ -1,0 +1,49 @@
+<VAST xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:noNamespaceSchemaLocation="vast.xsd">
+    <Error id="bstk-error"><![CDATA[https://track.bidderstack.com/error?code=[ERRORCODE]]]></Error>
+    <Ad id="131557116">
+        <InLine>
+            <AdSystem>Bidderstack</AdSystem>
+            <AdTitle>Ad</AdTitle>
+            <Impression id="TNS-1"><![CDATA[https://www.tns-counter.ru/V13a****gpmd_ad/ru/UTF-8/tmsec=gazprommedia_cid9860665-posid1/794974025]]></Impression>
+            <Creatives>
+                <Creative id="131557116" sequence="" AdID="131557116">
+                    <Linear>
+                        <Duration>00:00:20</Duration>
+                        <MediaFiles>
+                            <MediaFile id="1" delivery="progressive" type="video/mp4" bitrate="580" width="640" height="360" codec="h264"><![CDATA[https://files.bidderstack.com/C603DF.mp4]]></MediaFile>
+                        </MediaFiles>
+                        <TrackingEvents>
+                            <Tracking event="start"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=start&MACRO_TEST${AUCTION_PRICE}MACRO_TEST]]></Tracking>
+                            <Tracking event="firstQuartile"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=firstQuartile&MACRO_TEST2%%WINNING_PRICE:bla%%MACRO_TEST2]]></Tracking>
+                            <Tracking event="midpoint"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=midpoint&MACRO_TEST3${AUCTION_PRICE:bla}${AUCTION_PRICE}MACRO_TEST3]]></Tracking>
+                            <Tracking event="thirdQuartile"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=thirdQuartile]]></Tracking>
+                            <Tracking event="complete"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=complete]]></Tracking>
+                            <Tracking event="mute"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=mute]]></Tracking>
+                            <Tracking event="unmute"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=unmute]]></Tracking>
+                            <Tracking event="pause"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=pause]]></Tracking>
+                            <Tracking event="resume"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=resume]]></Tracking>
+                            <Tracking event="fullscreen"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=fullscreen]]></Tracking>
+                            <Tracking event="exitFullscreen"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=exitFullscreen]]></Tracking>
+                            <Tracking event="close"><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=close]]></Tracking>
+                        </TrackingEvents>
+                        <VideoClicks>
+                            <ClickThrough><![CDATA[https://mcdonalds.ru/happymeal/toys]]></ClickThrough>
+                            <ClickTracking><![CDATA[https://files.bidderstack.com/s.gif?id=2&ev=click]]></ClickTracking>
+                        </VideoClicks>
+                    </Linear>
+                </Creative>
+            </Creatives>
+            <Extensions>
+                <Extension type="startTime">00:00</Extension>
+                <Extension type="skipTime">05:00</Extension>
+                <Extension type="skipTime2">00:11</Extension>
+                <Extension type="controls"><![CDATA[1]]></Extension>
+                <Extension type="linkTxt"><![CDATA[%D0%BF%D0%B5%D1%80%D0%B5%D0%B9%D1%82%D0%B8%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BE%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8F]]></Extension>
+                <Extension type="isClickable"><![CDATA[1]]></Extension>
+                <Extension type="Allowblock">1</Extension>
+                <Extension type="rbcompanion"><![CDATA[None]]></Extension>
+                <Extension type="closeAct"><![CDATA[pause]]></Extension>
+            </Extensions>
+        </InLine>
+    </Ad>
+</VAST>

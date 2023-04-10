@@ -1,0 +1,6 @@
+f = open("./file.txt", "w")
+f.write("hello\n")
+f.seek(0)
+f.truncate()
+f.write("bye\n")
+f.close()

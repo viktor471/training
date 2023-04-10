@@ -1,0 +1,185 @@
+{
+    "id": "603444293650671237",
+    "user": {
+        "id": "4252230167498161490",
+        "ext": {
+            "consent": ""
+        }
+    },
+    "app": {
+        "bundle": "kunai.master.game",
+        "content": {
+            "language": "ru"
+        },
+        "publisher": {
+            "id": "58079117"
+        },
+        "id": "1964943"
+    },
+    "tmax": 500,
+    "imp": [
+        {
+            "bidfloor": 5.666727589,
+            "displaymanager": "Yandex Mobile Ads SDK",
+            "id": "3",
+            "instl": 1,
+            "secure": 1,
+            "tagid": "1964943-3",
+            "banner": {
+                "format": [
+                    {
+                        "h": 280,
+                        "w": 336
+                    },
+                    {
+                        "h": 600,
+                        "w": 120
+                    },
+                    {
+                        "h": 100,
+                        "w": 320
+                    },
+                    {
+                        "h": 500,
+                        "w": 300
+                    },
+                    {
+                        "h": 360,
+                        "w": 250
+                    },
+                    {
+                        "h": 200,
+                        "w": 200
+                    },
+                    {
+                        "h": 250,
+                        "w": 300
+                    },
+                    {
+                        "h": 600,
+                        "w": 240
+                    },
+                    {
+                        "h": 100,
+                        "w": 300
+                    },
+                    {
+                        "h": 600,
+                        "w": 160
+                    },
+                    {
+                        "h": 250,
+                        "w": 250
+                    },
+                    {
+                        "h": 50,
+                        "w": 320
+                    },
+                    {
+                        "h": 133,
+                        "w": 240
+                    },
+                    {
+                        "h": 300,
+                        "w": 300
+                    },
+                    {
+                        "h": 480,
+                        "w": 320
+                    },
+                    {
+                        "h": 50,
+                        "w": 300
+                    },
+                    {
+                        "h": 400,
+                        "w": 240
+                    },
+                    {
+                        "h": 250,
+                        "w": 320
+                    },
+                    {
+                        "h": 446,
+                        "w": 200
+                    }
+                ],
+                "h": 480,
+                "w": 320
+            },
+            "ext": {
+                "unmoderated": 0
+            },
+            "clickbrowser": 1,
+            "displaymanagerver": "5.4.1",
+            "bidfloorcur": "USD"
+        }
+    ],
+    "cur": [
+        "RUB",
+        "USD",
+        "EUR",
+        "TRY",
+        "UAH",
+        "KZT",
+        "CHF"
+    ],
+    "source": {
+        "fd": 0,
+        "ext": {
+            "schain": {
+                "ver": "1.0",
+                "nodes": [
+                    {
+                        "sid": "58079117",
+                        "asi": "yandex.com",
+                        "hp": 1
+                    }
+                ],
+                "complete": 1
+            }
+        },
+        "sourcetype": 3,
+        "tid": ""
+    },
+    "ext": {
+        "notifications": {
+            "lurl": 1,
+            "nurl": 1
+        }
+    },
+    "device": {
+        "lmt": 0,
+        "ua": "Dalvik/2.1.0 (Linux; U; Android 12; SM-A325F Build/SP1A.210812.016)",
+        "ip": "185.117.148.112",
+        "ifa": "efa40fde-171c-48d4-a892-54432148aaaf",
+        "mccmnc": "437-9",
+        "geo": {
+            "city": "KG FRU",
+            "country": "KGZ"
+        },
+        "dpidmd5": "",
+        "carrier": "O!",
+        "dpidsha1": "",
+        "model": "SM-A325F",
+        "connectiontype": 6,
+        "make": "samsung",
+        "os": "Android",
+        "ext": {
+            "gaid": "efa40fde-171c-48d4-a892-54432148aaaf"
+        },
+        "osv": "12",
+        "w": 411,
+        "devicetype": 4,
+        "h": 836,
+        "dnt": 0,
+        "language": "ru"
+    },
+    "regs": {
+        "ext": {
+            "gdpr": 0
+        },
+        "coppa": 0
+    },
+    "at": 1
+}

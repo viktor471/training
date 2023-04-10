@@ -1,0 +1,146 @@
+<?xml version="1.0" ?>
+<VAST xmlns:ns0="https://www.w3.org/2001/XMLSchema-instance" version="2.0" ns0:noNamespaceSchemaLocation="vast.xsd">
+	
+    
+	<Error id="bstk-error">https://track.bidderstack.com/error?code=[ERRORCODE]</Error>
+	
+    
+	<Ad id="44">
+		
+        
+		<InLine>
+			
+            
+			<AdSystem>Bidderstack</AdSystem>
+			
+            
+			<AdTitle>Ad</AdTitle>
+			
+            
+			<Impression id="TNS-1">https://www.tns-counter.ru/V13a****gpmd_ad/ru/UTF-8/tmsec=gazprommedia_cid9860665-posid1/794974025</Impression>
+			
+            
+			<Creatives>
+				
+                
+				<Creative id="131557116" sequence="" AdID="131557116">
+					
+                    
+					<Linear>
+						
+                        
+						<Duration>00:00:20</Duration>
+						
+                        
+						<MediaFiles>
+							
+                            
+							<MediaFile id="1" delivery="progressive" type="video/mp4" bitrate="580" width="640" height="360" codec="h264">https://files.bidderstack.com/C603DF.mp4</MediaFile>
+							
+                        
+						</MediaFiles>
+						
+                        
+						<TrackingEvents>
+							
+                            
+							<Tracking event="start">https://files.bidderstack.com/s.gif?id=2&amp;ev=start&amp;MACRO_TEST${AUCTION_PRICE}MACRO_TEST</Tracking>
+							
+                            
+							<Tracking event="firstQuartile">https://files.bidderstack.com/s.gif?id=2&amp;ev=firstQuartile&amp;MACRO_TEST2%%WINNING_PRICE:bla%%MACRO_TEST2</Tracking>
+							
+                            
+							<Tracking event="midpoint">https://files.bidderstack.com/s.gif?id=2&amp;ev=midpoint&amp;MACRO_TEST3${AUCTION_PRICE:bla}${AUCTION_PRICE}MACRO_TEST3</Tracking>
+							
+                            
+							<Tracking event="thirdQuartile">https://files.bidderstack.com/s.gif?id=2&amp;ev=thirdQuartile</Tracking>
+							
+                            
+							<Tracking event="complete">https://files.bidderstack.com/s.gif?id=2&amp;ev=complete</Tracking>
+							
+                            
+							<Tracking event="mute">https://files.bidderstack.com/s.gif?id=2&amp;ev=mute</Tracking>
+							
+                            
+							<Tracking event="unmute">https://files.bidderstack.com/s.gif?id=2&amp;ev=unmute</Tracking>
+							
+                            
+							<Tracking event="pause">https://files.bidderstack.com/s.gif?id=2&amp;ev=pause</Tracking>
+							
+                            
+							<Tracking event="resume">https://files.bidderstack.com/s.gif?id=2&amp;ev=resume</Tracking>
+							
+                            
+							<Tracking event="fullscreen">https://files.bidderstack.com/s.gif?id=2&amp;ev=fullscreen</Tracking>
+							
+                            
+							<Tracking event="exitFullscreen">https://files.bidderstack.com/s.gif?id=2&amp;ev=exitFullscreen</Tracking>
+							
+                            
+							<Tracking event="close">https://files.bidderstack.com/s.gif?id=2&amp;ev=close</Tracking>
+							
+                        
+						</TrackingEvents>
+						
+                        
+						<VideoClicks>
+							
+                            
+							<ClickThrough>https://mcdonalds.ru/happymeal/toys</ClickThrough>
+							
+                            
+							<ClickTracking>https://files.bidderstack.com/s.gif?id=2&amp;ev=click</ClickTracking>
+							
+                        
+						</VideoClicks>
+						
+                    
+					</Linear>
+					
+                
+				</Creative>
+				
+            
+			</Creatives>
+			
+            
+			<Extensions>
+				
+                
+				<Extension type="startTime">00:00</Extension>
+				
+                
+				<Extension type="skipTime">05:00</Extension>
+				
+                
+				<Extension type="skipTime2">00:11</Extension>
+				
+                
+				<Extension type="controls">1</Extension>
+				
+                
+				<Extension type="linkTxt">%D0%BF%D0%B5%D1%80%D0%B5%D0%B9%D1%82%D0%B8%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BE%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8F</Extension>
+				
+                
+				<Extension type="isClickable">1</Extension>
+				
+                
+				<Extension type="Allowblock">1</Extension>
+				
+                
+				<Extension type="rbcompanion">None</Extension>
+				
+                
+				<Extension type="closeAct">pause</Extension>
+				
+            
+			</Extensions>
+			
+        
+		</InLine>
+		
+    
+	</Ad>
+	
+
+</VAST>
