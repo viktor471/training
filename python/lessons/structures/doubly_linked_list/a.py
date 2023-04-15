@@ -4,9 +4,13 @@ from typing import Any, Optional, Sequence
 
 class List:
     class Node:
-        def __init__(self, data: Any, next_: Optional["List.Node"] = None):
+        def __init__(self,
+                     data: Any,
+                     next_: Optional["List.Node"] = None,
+                     prev_: Optional["List.Node"] = None):
             self._data = data
             self._next = next_
+            self._prev = prev_
 
         @property
         def next(self) -> "List.Node":
@@ -16,6 +20,15 @@ class List:
         def next(self, next: "List.Node") -> "List.Node":
             assert isinstance(next, type(self)) or next is None
             self._next = next
+        
+        @property
+        def prev(self) -> "List.Node":
+            return self._prev
+
+        @prev.setter
+        def prev(self, prev: "List.Node") -> "List.Node":
+            assert isinstance(prev, type(self)) or prev is None
+            self._prev = prev
 
         @property
         def data(self) -> Any:
@@ -69,7 +82,7 @@ class List:
 
     def append(self, data: Any) -> "List":
         if self:
-            self.tail.next = self.Node(data=data)
+            self.tail.next = self.Node(data=data, prev_=self.tail)
             self._tail = self.tail.next
         else:
             self._head = self.Node(data=data)
@@ -87,6 +100,7 @@ class List:
         head = self.head
         self._head = self.Node(data=data)
         self.head.next = head
+        self.head.next.prev = self.head
         self._size += 1
 
         return self
@@ -114,6 +128,8 @@ class List:
             prev = self[index - 1]
             inserted = self.Node(data=data, next_=prev.next)
             prev.next = inserted
+            prev.next.next.prev = prev.next
+
         self._size += 1
         return inserted
 
