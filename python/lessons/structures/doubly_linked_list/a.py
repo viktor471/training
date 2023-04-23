@@ -1,13 +1,14 @@
-import logging
 from typing import Any, Optional, Sequence
 
 
 class List:
     class Node:
-        def __init__(self,
-                     data: Any,
-                     next_: Optional["List.Node"] = None,
-                     prev_: Optional["List.Node"] = None):
+        def __init__(
+            self,
+            data: Any,
+            next_: Optional["List.Node"] = None,
+            prev_: Optional["List.Node"] = None,
+        ):
             self._data = data
             self._next = next_
             self._prev = prev_
@@ -20,7 +21,7 @@ class List:
         def next(self, next: "List.Node") -> "List.Node":
             assert isinstance(next, type(self)) or next is None
             self._next = next
-        
+
         @property
         def prev(self) -> "List.Node":
             return self._prev
@@ -49,6 +50,16 @@ class List:
         if seq is not None:
             for el in seq:
                 self.append(el)
+
+    @property
+    def data(self) -> list:
+        return [el.data for el in self]
+
+    def __repr__(self) -> str:
+        return f"List({self.data})"
+
+    def __str__(self) -> str:
+        return f"{self.data}"
 
     class Iterator:
         def __init__(self, start_node: "List.Node"):
@@ -108,9 +119,7 @@ class List:
     def __getitem__(self, index: int) -> "Node":
         current = self.head
         i = 0
-        logging.info(f"{self.size=} {i=}")
         while i < self.size:
-            logging.info(f"{index=} {i=}")
             if i == index:
                 break
             i += 1
@@ -120,25 +129,35 @@ class List:
 
         return current
 
-    def _insert(self, index, data) -> "Node":
+    def _insert(self, index, data, replace: bool) -> "Node":
         if index == 0:
             inserted = self.Node(data=data, next_=self._head)
             self._head = inserted
         else:
             prev = self[index - 1]
-            inserted = self.Node(data=data, next_=prev.next)
+            if replace:
+                if prev.next is not None:
+                    next_ = prev.next.next
+                else:
+                    next_ = None
+            else:
+                next_ = prev.next
+
+            inserted = self.Node(data=data, next_=next_)
             prev.next = inserted
-            prev.next.next.prev = prev.next
+
+            if next_ is not None:
+                next_.prev = prev.next
 
         self._size += 1
         return inserted
 
     def __setitem__(self, index: int, data: Any) -> "Node":
-        inserted = self._insert(index, data)
+        inserted = self._insert(index, data, replace=True)
         return inserted
 
     def insert(self, index, data) -> "List":
-        self._insert(index, data)
+        self._insert(index, data, replace=False)
         return self
 
     def pop(self, index: int | None = None) -> "List":
